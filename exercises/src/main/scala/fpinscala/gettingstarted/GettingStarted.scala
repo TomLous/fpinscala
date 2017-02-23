@@ -42,7 +42,7 @@ object MyModule {
 
     @tailrec
     def fibint(pos: Int, a:Int, b:Int): Int = {
-      if(pos == 0) a
+      if(pos == 1) a
       else fibint(pos - 1, b, a+b)
     }
 
