@@ -9,7 +9,15 @@ import org.scalatest.FunSuite
 class PolymorphicFunctions$Test extends FunSuite {
 
   test("testUncurry") {
+    def f1(x: String) = (y: String) => x.length + y.length
+    def f2(x: Int) = (y: Long) => x * y / 3.0
 
+
+    val cf1:(String, String) => Int = PolymorphicFunctions.uncurry(f1)
+    val cf2:(Int, Long) => Double = PolymorphicFunctions.uncurry(f2)
+
+    assert(cf1("hoi","hoe") == 6)
+    assert(cf2(9,9) == 27.0)
   }
 
   test("testCompose") {
@@ -30,6 +38,15 @@ class PolymorphicFunctions$Test extends FunSuite {
   }
 
   test("testCurry") {
+    def f1(x: String, y: String):Int = x.length + y.length
+    def f2(x: Int, y: Long):Double = x * y / 3
+
+
+    val cf1:(String) => (String) => Int = PolymorphicFunctions.curry(f1)
+    val cf2:(Int) => (Long) => Double = PolymorphicFunctions.curry(f2)
+
+    assert(cf1("hoi")("hoe") == 6)
+    assert(cf2(9)(9) == 27.0)
 
   }
 

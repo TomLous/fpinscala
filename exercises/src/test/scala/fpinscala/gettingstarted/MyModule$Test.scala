@@ -8,14 +8,14 @@ import org.scalatest.FunSuite
   */
 class MyModule$Test extends FunSuite {
 
-  test("abs") {
+  test("testAbs") {
     assert(MyModule.abs(-43) === 43)
     assert(MyModule.abs(43) === 43)
     assert(MyModule.abs(0) === 0)
     assert(MyModule.abs(-5) === 5)
   }
 
-  test("factorial"){
+  test("testFactorial"){
     assert(MyModule.factorial(3) === 1*2*3)
     assert(MyModule.factorial(5) === 1*2*3*4*5)
     assert(MyModule.factorial(7) === 1*2*3*4*5*6*7)
@@ -24,7 +24,7 @@ class MyModule$Test extends FunSuite {
     assert(MyModule.factorial(-3) === 1)
   }
 
-  test("fib"){
+  test("testFib"){
     assert(MyModule.fib(1) === 0)
     assert(MyModule.fib(2) === 1)
     assert(MyModule.fib(3) === 1)
