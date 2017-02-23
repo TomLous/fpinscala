@@ -21,6 +21,13 @@ class PolymorphicFunctions$Test extends FunSuite {
   }
 
   test("testCompose") {
+    def f1(x:String):Int = x.length
+    def f2(y:Int): Double = y / 3
+
+    val cf1:(String) => Double = PolymorphicFunctions.compose(f2, f1)
+
+    assert(cf1("how") === 1.0)
+    assert(cf1("howhow") === 2.0)
 
   }
 
