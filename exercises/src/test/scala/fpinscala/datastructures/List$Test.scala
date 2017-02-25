@@ -25,7 +25,12 @@ class List$Test extends FunSuite {
   }
 
   test("testInit") {
-
+    assert(List.init(List(1,2,3)) == List(1,2))
+    assert(List.init(List(1,2,3,4,5,6)) == List(1,2,3,4,5))
+    assert(List.init(List(1)) == Nil)
+    assertThrows[RuntimeException]{
+      List.init(Nil)
+    }
   }
 
   test("testSum2") {
@@ -65,6 +70,12 @@ class List$Test extends FunSuite {
   }
 
   test("testDropWhile") {
+
+    def f1 = (x:Int) => x %2 ==0
+
+    assert(List.dropWhile(List(2,4,2,3,2,3,1), f1) == List(3,2,3,1))
+    assert(List.dropWhile(List(3,2,3,1), f1) == List(3,2,3,1))
+    assert(List.dropWhile(List(2,4,2), f1) == Nil)
 
   }
 

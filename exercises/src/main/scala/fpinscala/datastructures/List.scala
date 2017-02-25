@@ -61,14 +61,22 @@ object List { // `List` companion object. Contains functions for creating and wo
   }
 
   def drop[A](l: List[A], n: Int): List[A] = l match {
-    case x if n==0 => x
+    case _ if n==0 => l
     case Nil => sys.error("undefined")
     case Cons(_, t) if n > 0 => drop(t, n-1)
   }
 
-  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = ???
+  def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
+    case Cons(h, t) if f(h) => dropWhile(t, f)
+    case _ => l
 
-  def init[A](l: List[A]): List[A] = ???
+  }
+
+  def init[A](l: List[A]): List[A] = l match {
+    case Nil => sys.error("undefined")
+    case Cons(_, Nil) => Nil
+    case Cons(h, t) => Cons(h, init(t))
+  }
 
   def length[A](l: List[A]): Int = ???
 
