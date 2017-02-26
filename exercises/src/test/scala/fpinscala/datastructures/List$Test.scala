@@ -106,6 +106,10 @@ class List$Test extends FunSuite {
     assert(List.increment(List(1,2,3)) == List(2,3,4))
   }
 
+  test("testDoubleToString") {
+    assert(List.doubleToString(List(1.3,2.4,3.5)) == List("1.3", "2.4", "3.5"))
+  }
+
   test("testApply") {
 
   }
