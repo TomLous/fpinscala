@@ -21,8 +21,10 @@ class List$Test extends FunSuite {
     }
   }
 
-  test("testProduct2") {
-
+  test("testProductLeft") {
+    assert(List.productLeft(List(1,2,3))== 6)
+    assert(List.productLeft(List(1,2,3,4)) == 24)
+    assert(List.productLeft(Nil) == 1)
   }
 
   test("testInit") {
@@ -34,12 +36,16 @@ class List$Test extends FunSuite {
     }
   }
 
-  test("testSum2") {
-
+  test("testSumLeft") {
+    assert(List.sumLeft(List(1,2,3))== 6)
+    assert(List.sumLeft(List(1,2,3,4)) == 10)
+    assert(List.sumLeft(Nil) == 0)
   }
 
-  test("testProduct") {
-
+  test("testLengthLeft") {
+    assert(List.lengthLeft(List(1,2,3,4,5)) == 5)
+    assert(List.lengthLeft(Nil) == 0)
+    assert(List.lengthLeft(List(1,2,3)) == 3)
   }
 
   test("testLength") {
@@ -56,8 +62,11 @@ class List$Test extends FunSuite {
     }
   }
 
-  test("testAppend") {
-
+  test("testAppendRight") {
+    assert(List.appendRight(List(1,2,3,4,5),List(6,7,8)) == List(1,2,3,4,5,6,7,8))
+    assert(List.appendRight(List(1,2,3,4,5),Nil) == List(1,2,3,4,5))
+    assert(List.appendRight(Nil,List(1,2,3,4,5)) == List(1,2,3,4,5))
+    assert(List.appendRight(List(1),List(2)) == List(1,2))
   }
 
   test("testTail") {
@@ -82,8 +91,10 @@ class List$Test extends FunSuite {
 
   }
 
-  test("testSum") {
-
+  test("testReverse") {
+    assert(List.reverse(List(1,2,3,4,5)) == List(5,4,3,2,1))
+    assert(List.reverse(Nil) == Nil)
+    assert(List.reverse(List(1,2,3)) == List(3,2,1))
   }
 
   test("testFoldRight") {
