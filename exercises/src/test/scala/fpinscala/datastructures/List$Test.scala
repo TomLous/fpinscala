@@ -9,7 +9,8 @@ import org.scalatest.FunSuite
 class List$Test extends FunSuite {
 
   test("testFoldLeft") {
-
+    assert(List.foldLeft(List(1,2,3), 1)(_ * _) == 6)
+    assert(List.foldLeft(List(1,2,3), 0)(_ + _) == 6)
   }
 
   test("testSetHead") {
@@ -42,7 +43,9 @@ class List$Test extends FunSuite {
   }
 
   test("testLength") {
-
+    assert(List.length(List(1,2,3,4,5)) == 5)
+    assert(List.length(Nil) == 0)
+    assert(List.length(List(1,2,3)) == 3)
   }
 
   test("testDrop") {
