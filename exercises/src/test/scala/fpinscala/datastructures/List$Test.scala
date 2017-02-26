@@ -102,6 +102,10 @@ class List$Test extends FunSuite {
     assert(List.concat(List(List(1),List(4))) == List(1,4))
   }
 
+  test("testIncrement") {
+    assert(List.increment(List(1,2,3)) == List(2,3,4))
+  }
+
   test("testApply") {
 
   }
