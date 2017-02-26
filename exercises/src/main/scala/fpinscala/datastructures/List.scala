@@ -105,5 +105,23 @@ object List { // `List` companion object. Contains functions for creating and wo
 
   def doubleToString(l: List[Double]):List[String] = foldRight(l, List[String]())((d,nl)=>Cons(d.toString, nl))
 
-  def map[A,B](l: List[A])(f: A => B): List[B] = ???
+  def map[A,B](l: List[A])(f: A => B): List[B] = foldRightViaFoldLeft(l, List[B]())((a,b)=>Cons(f(a),b))
+
+  def flatMap[A,B](l: List[A])(f: A => List[B]): List[B] = foldRightViaFoldLeft(l, List[B]())((a,b)=>appendRight(f(a),b))
+
+  def filter[A](l: List[A])(f: A => Boolean): List[A] = foldRightViaFoldLeft(l, List[A]())((a,b) => if(f(a)) Cons(a, b) else b)
+
+  def filter2[A](l: List[A])(f: A => Boolean): List[A] = flatMap(l)(a => if(f(a)) List(a) else Nil)
+
+  def zipAndSum(l1: List[Int], l2: List[Int]): List[Int] = (l1, l2) match {
+    case (Nil, b) => b
+    case (a, Nil) => a
+    case (Cons(h1, t1), Cons(h2, t2)) => Cons(h1 + h2, zipAndSum(t1, t2))
+  }
+
+  def zipWith[A,B,C](l1: List[A], l2: List[B])(f: (A,B) => C): List[C] = (l1, l2) match {
+    case (Nil, b) => Nil
+    case (a, Nil) => Nil
+    case (Cons(h1, t1), Cons(h2, t2)) => Cons(f(h1, h2), zipWith(t1, t2)(f))
+  }
 }

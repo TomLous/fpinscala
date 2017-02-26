@@ -103,19 +103,37 @@ class List$Test extends FunSuite {
   }
 
   test("testIncrement") {
-    assert(List.increment(List(1,2,3)) == List(2,3,4))
+    assert(List.increment(List(1,2,3)) === List(2,3,4))
   }
 
   test("testDoubleToString") {
-    assert(List.doubleToString(List(1.3,2.4,3.5)) == List("1.3", "2.4", "3.5"))
+    assert(List.doubleToString(List(1.3,2.4,3.5)) === List("1.3", "2.4", "3.5"))
   }
 
-  test("testApply") {
-
+  test("testFilter") {
+    assert(List.filter(List(1,2,3,4,5,6,7))(_ % 2 == 0) === List(2,4,6))
   }
+
+  test("testFilter2") {
+    assert(List.filter2(List(1,2,3,4,5,6,7))(_ % 2 == 0) === List(2,4,6))
+  }
+
+  test("testFlatMap") {
+    assert(List.flatMap(List(1,2,3))(i => List(i,i)) === List(1,1,2,2,3,3))
+  }
+
+  test("testZipAndSum") {
+    assert(List.zipAndSum(List(1,2,3),List(4,5,6)) === List(5,7,9))
+  }
+
+  test("testZipWith") {
+    assert(List.zipWith(List(1,2,3),List(4.1,5.2,6.3))(_ * _) === List(4.1,10.4,18.9))
+  }
+
 
   test("testMap") {
-
+    assert(List.map(List(1,2,3))(_.toString) == List("1","2","3"))
+    assert(List.map(List(1,2,3))(_ / 3) == List(1/3,2/3,3/3))
   }
 
 }
