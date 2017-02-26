@@ -97,8 +97,9 @@ class List$Test extends FunSuite {
     assert(List.reverse(List(1,2,3)) == List(3,2,1))
   }
 
-  test("testFoldRight") {
-
+  test("testConcat") {
+    assert(List.concat(List(List(1,2,3),List(4,5),Nil,List(6))) == List(1,2,3,4,5,6))
+    assert(List.concat(List(List(1),List(4))) == List(1,4))
   }
 
   test("testApply") {
