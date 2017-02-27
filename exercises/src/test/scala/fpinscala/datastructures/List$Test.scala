@@ -136,4 +136,10 @@ class List$Test extends FunSuite {
     assert(List.map(List(1,2,3))(_ / 3) == List(1/3,2/3,3/3))
   }
 
+  test("testHasSubsequence") {
+    assert(List.hasSubsequence(List(1,2,3), List(1,2)))
+    assert(List.hasSubsequence(List(1,2,3,4,5,6), List(3,4,5)))
+    assert(!List.hasSubsequence(List(1,2,3,5,6), List(3,4,5)))
+
+  }
 }

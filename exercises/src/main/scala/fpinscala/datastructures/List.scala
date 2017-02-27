@@ -74,6 +74,7 @@ object List { // `List` companion object. Contains functions for creating and wo
 
   }
 
+
   def init[A](l: List[A]): List[A] = l match {
     case Nil => sys.error("undefined")
     case Cons(_, Nil) => Nil
@@ -124,4 +125,34 @@ object List { // `List` companion object. Contains functions for creating and wo
     case (a, Nil) => Nil
     case (Cons(h1, t1), Cons(h2, t2)) => Cons(f(h1, h2), zipWith(t1, t2)(f))
   }
+
+
+  @tailrec
+  def hasSubsequence[A](sup: List[A], sub: List[A]): Boolean = (sup,sub) match {
+    case (_, Nil) => true
+    case (Nil, _) => false
+    case (Cons(_, supTail), _)  => {
+      @tailrec
+      def sameFromNow(ssup: List[A], ssub: List[A]): Boolean = (ssup,ssub) match {
+        case (_, Nil) => true
+        case (Nil, _) => false
+        case (Cons(ssupHead, ssupTail), Cons(ssubHead, ssubTail)) =>
+          if(ssupHead==ssubHead) sameFromNow(ssupTail, ssubTail)
+          else false
+      }
+      sameFromNow(sup, sub) || hasSubsequence(supTail, sub)
+    }
+  }
+  /* = (sup, sub) match {
+    case (_, Nil) => true
+    case (Nil, _) => false
+    case (Cons(ha,ta), Cons(hb,tb)) => {
+      def ss(sup2: List[A], sub2:List[A]): Boolean = (sup2, sub2) match {
+        case (_, Nil) => true
+        case (Nil, _) => false
+        case (Cons(ha2,ta2), Cons(hb2,tb2)) if ha2==hb2 => ss(ta2, tb2)
+      }
+      if(ha == ha) ss(ta,tb) else hasSubsequence(ta, sub)
+    }
+  }*/
 }
