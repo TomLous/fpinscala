@@ -44,4 +44,6 @@ object Tree {
 
   def maximumFold(t:Tree[Int]):Int = fold(t)(x => x)(_ max _)
 
+  def depthFold(t:Tree[Int]):Int = fold(t)(x => 1)((l,r) => 1 + (l max r))
+
 }

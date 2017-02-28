@@ -58,4 +58,11 @@ class Tree$Test extends FunSuite {
     assert(Tree.maximumFold(Branch(Leaf(12), Branch(Leaf(23), Branch(Leaf(3), Leaf(14))))) == 23)
 
   }
+
+  test("testDepthFold") {
+    assert(Tree.depthFold(Branch(Branch(Leaf(1), Leaf(8)), Branch(Leaf(2), Leaf(5)))) == 3)
+    assert(Tree.depthFold(Leaf(19)) == 1)
+    assert(Tree.depthFold(Branch(Leaf(12), Branch(Leaf(23), Branch(Leaf(3), Leaf(14))))) == 4)
+
+  }
 }
