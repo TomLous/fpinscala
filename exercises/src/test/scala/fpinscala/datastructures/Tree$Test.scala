@@ -36,4 +36,12 @@ class Tree$Test extends FunSuite {
     assert(Tree.depth2(Branch(Leaf(12),Branch(Leaf(23),Branch(Leaf(3),Leaf(14)))))==4)
 
   }
+
+
+  test("testMap"){
+    assert(Tree.map(Branch(Branch(Leaf(1),Leaf(2)),Branch(Leaf(2),Leaf(4))))(x => x * 2.2) == Branch(Branch(Leaf(2.2),Leaf(4.4)),Branch(Leaf(4.4),Leaf(8.8))))
+    assert(Tree.map(Branch(Branch(Leaf(1),Leaf(2)),Branch(Leaf(3),Leaf(4))))(x => x.toString + "a") == Branch(Branch(Leaf("1a"),Leaf("2a")),Branch(Leaf("3a"),Leaf("4a"))))
+    assert(Tree.map(Leaf("abcde"))(x => x.length) == Leaf(5))
+
+  }
 }
