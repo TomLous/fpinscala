@@ -9,6 +9,15 @@ import org.scalatest.FunSuite
 class OptionTest extends FunSuite {
 
   test("testFlatMap") {
+    val s = Some(2)
+    val s2 = Some(0)
+    val n:Option[Int] = None
+
+    val f = (x:Int) => if(x!=0) Some(5/x) else None
+
+    assert(s.flatMap(f) == Some(5/2))
+    assert(s2.flatMap(f) == None)
+    assert(n.flatMap(f) == None)
 
   }
 
@@ -17,10 +26,14 @@ class OptionTest extends FunSuite {
   }
 
   test("testGetOrElse") {
-
+    val s = Some(2)
+    val n:Option[Int] = None
+    assert(s.getOrElse(3) == 2)
+    assert(n.getOrElse(3) == 3)
   }
 
   test("testOrElse") {
+
 
   }
 
