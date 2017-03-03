@@ -22,7 +22,12 @@ class OptionTest extends FunSuite {
   }
 
   test("testFilter") {
-
+    val s = Some(2)
+    val s3 = Some(3)
+    val n:Option[Int] = None
+    assert(s.filter(_ % 2 ==0) == Some(2))
+    assert(s3.filter(_ % 2 ==0) == None)
+    assert(n.filter(_ % 2 ==0) == None)
   }
 
   test("testGetOrElse") {
@@ -34,7 +39,10 @@ class OptionTest extends FunSuite {
 
   test("testOrElse") {
 
-
+    val s = Some(2)
+    val n:Option[Int] = None
+    assert(s.orElse(Some(3)) == Some(2))
+    assert(n.orElse(Some(3)) == Some(3))
   }
 
   test("testMap") {
