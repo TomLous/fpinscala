@@ -53,4 +53,15 @@ class OptionTest extends FunSuite {
 
   }
 
+  test("testMap2") {
+    val s = Some(2)
+    val s2 = Some(3)
+    val n:Option[Int] = None
+
+    def f(a:Int, b:Int): Int = a + b
+    assert(Option.map2(s,s2)(f) == Some(5))
+    assert(Option.map2(s,n)(f) == None)
+    assert(Option.map2(n,s2)(f) == None)
+  }
+
 }
