@@ -118,6 +118,12 @@ class StreamTest extends FunSuite {
     assert(Stream.fibs.take(7).toList === List(0, 1, 1, 2,3,5,8))
   }
 
+  test("testUnfold") {
+    assert(Stream.unfold(1)(x => if (x > 10) None else Some(x, x + 1)).take(4).toList === List(1, 2, 3, 4))
+    assert(Stream.unfold(1)(x => if (x > 5) None else Some(x, x + 1)).toList === List(1, 2, 3, 4, 5))
+    assert(Stream.unfold(1)(x => Some(x, x + 1)).take(3).toList === List(1, 2, 3))
+  }
+
 
 
   test("testExists") {
