@@ -34,7 +34,9 @@ class StreamTest extends FunSuite {
   }
 
   test("testTakeWhile") {
-
+    assert(Stream(2,4,6,7,3,9,10).takeWhile(_ % 2 == 0).toList === List(2,4,6))
+    assert(Stream(2,1,6,7,3,9,10).takeWhile(_ < 2).toList === List())
+    assert(Stream(2,1,6,7,3,9,10).takeWhile(_ > 0).toList === List(2,1,6,7,3,9,10))
   }
 
   test("testFind") {
