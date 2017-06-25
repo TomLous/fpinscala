@@ -153,5 +153,5 @@ class StreamTest extends FunSuite {
   test("testStartsWith") {
 
   }
-
+ // @todo bookmark p.76  / 5.13
 }
