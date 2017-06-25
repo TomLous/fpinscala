@@ -72,6 +72,18 @@ class StreamTest extends FunSuite {
     assert(Stream().headOption === None)
   }
 
+  test("testMap") {
+    assert(Stream(1,4,5,6,3,9,10).map(_ * 2).toList === List(2,8,10,12,6,18,20))
+    assert(Stream(1,4,5,6,3,9,10).map(x => s"h$x").toList === List("h1","h4","h5","h6","h3","h9","h10"))
+  }
+
+  test("testMap_case") {
+    assert(Stream(1,4,5,6,3,9,10).map_case(_ * 2).toList === List(2,8,10,12,6,18,20))
+    assert(Stream(1,4,5,6,3,9,10).map_case(x => s"h$x").toList === List("h1","h4","h5","h6","h3","h9","h10"))
+  }
+
+
+
   test("testExists") {
 
   }
