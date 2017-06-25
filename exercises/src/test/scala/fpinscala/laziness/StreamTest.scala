@@ -8,6 +8,15 @@ import org.scalatest.FunSuite
   */
 class StreamTest extends FunSuite {
 
+
+//  lazy val testInts = Stream(1,4,5,6,3,9,10)
+
+  test("testToList") {
+    assert(Stream(1,4,5,6,3,9,10).toList === List(1,4,5,6,3,9,10))
+    assert(Stream("a","b","c").toList === List("a","b","c"))
+    assert(Stream().toList === Nil)
+  }
+
   test("testDrop") {
 
   }
