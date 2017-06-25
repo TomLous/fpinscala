@@ -88,6 +88,13 @@ class StreamTest extends FunSuite {
     assert(Stream(1,4,5,6,3,9,10).filter(_ >= 1).toList === List(1,4,5,6,3,9,10))
   }
 
+  test("testAppend") {
+    assert(Stream(1,4,5).append(Stream(6,9,11)).toList === List(1,4,5,6,9,11))
+    assert(Stream(1,4,5).append(Stream(8.9, 9.3)).toList === List(1.0,4.0,5.0,8.9,9.3))
+    assert(Stream(1,4,5).append(Stream()).toList === List(1,4,5))
+    assert(Stream().append(Stream(1,4,5)).toList === List(1,4,5))
+  }
+
 
   test("testExists") {
 
