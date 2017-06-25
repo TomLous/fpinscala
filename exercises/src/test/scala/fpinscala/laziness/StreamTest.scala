@@ -49,6 +49,12 @@ class StreamTest extends FunSuite {
     assert(Stream(2,1,6,7,3,9,10).takeWhile(_ > 0).toList === List(2,1,6,7,3,9,10))
   }
 
+  test("testTakeWhileFoldRight") {
+    assert(Stream(2,4,6,7,3,9,10).takeWhileFoldRight(_ % 2 == 0).toList === List(2,4,6))
+    assert(Stream(2,1,6,7,3,9,10).takeWhileFoldRight(_ < 2).toList === List())
+    assert(Stream(2,1,6,7,3,9,10).takeWhileFoldRight(_ > 0).toList === List(2,1,6,7,3,9,10))
+  }
+
   test("testFind") {
 
   }
