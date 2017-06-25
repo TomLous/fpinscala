@@ -6,7 +6,7 @@ import org.scalatest.FunSuite
   * Created by Tom Lous on 23/02/17.
   * Copyright © 2017 Datlinq B.V..
   */
-class PolymorphicFunctions$Test extends FunSuite {
+class PolymorphicFunctionsTest extends FunSuite {
 
   test("testUncurry") {
     def f1(x: String) = (y: String) => x.length + y.length

@@ -6,7 +6,7 @@ import org.scalatest.FunSuite
   * Created by Tom Lous on 24/02/17.
   * Copyright © 2017 Datlinq B.V..
   */
-class List$Test extends FunSuite {
+class ListTest extends FunSuite {
 
   test("testFoldLeft") {
     assert(List.foldLeft(List(1,2,3), 1)(_ * _) == 6)
