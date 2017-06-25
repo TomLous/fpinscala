@@ -102,8 +102,14 @@ class StreamTest extends FunSuite {
     assert(Stream[Int]().flatMap(x => Stream(x, x*2, x*3)).toList === List())
   }
 
+  test("testConstant") {
+    assert(Stream.constant(3).take(4).toList === List(3, 3, 3, 3))
+    assert(Stream.constant("x").take(2).toList === List("x", "x"))
+  }
 
-  test("testExists") {
+
+
+    test("testExists") {
 
   }
 
