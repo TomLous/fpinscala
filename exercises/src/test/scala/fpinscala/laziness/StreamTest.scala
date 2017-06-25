@@ -107,15 +107,31 @@ class StreamTest extends FunSuite {
     assert(Stream.constant("x").take(2).toList === List("x", "x"))
   }
 
+  test("testConstant_unfold") {
+    assert(Stream.constant_unfold(3).take(4).toList === List(3, 3, 3, 3))
+    assert(Stream.constant_unfold("x").take(2).toList === List("x", "x"))
+  }
+
 
   test("testFrom") {
     assert(Stream.from(3).take(4).toList === List(3, 4, 5, 6))
     assert(Stream.from(123).take(2).toList === List(123,124))
   }
 
+
+  test("testFrom_unfold") {
+    assert(Stream.from_unfold(3).take(4).toList === List(3, 4, 5, 6))
+    assert(Stream.from_unfold(123).take(2).toList === List(123,124))
+  }
+
   test("testFibs") {
     assert(Stream.fibs.take(4).toList === List(0, 1, 1, 2))
     assert(Stream.fibs.take(7).toList === List(0, 1, 1, 2,3,5,8))
+  }
+
+  test("testFibs_unfold") {
+    assert(Stream.fibs_unfold.take(4).toList === List(0, 1, 1, 2))
+    assert(Stream.fibs_unfold.take(7).toList === List(0, 1, 1, 2,3,5,8))
   }
 
   test("testUnfold") {
