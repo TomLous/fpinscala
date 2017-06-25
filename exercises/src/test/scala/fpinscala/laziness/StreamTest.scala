@@ -113,6 +113,11 @@ class StreamTest extends FunSuite {
     assert(Stream.from(123).take(2).toList === List(123,124))
   }
 
+  test("testFibs") {
+    assert(Stream.fibs.take(4).toList === List(0, 1, 1, 2))
+    assert(Stream.fibs.take(7).toList === List(0, 1, 1, 2,3,5,8))
+  }
+
 
 
   test("testExists") {
