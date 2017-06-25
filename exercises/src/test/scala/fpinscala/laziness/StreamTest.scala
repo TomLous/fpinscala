@@ -30,7 +30,17 @@ class StreamTest extends FunSuite {
   }
 
   test("testForAll") {
+    assert(Stream(1,5,7,3,9,11).forAll(_ % 2 == 1))
+    assert(!Stream(1,5,7,4,9,11).forAll(_ % 2 == 1))
+    assert(!Stream(1,5,7,4,9,11).forAll(_ > 1))
+    assert(Stream(1,5,7,4,9,11).forAll(_ > 0))
+  }
 
+  test("testForAll_case") {
+    assert(Stream(1,5,7,3,9,11).forAll_case(_ % 2 == 1))
+    assert(!Stream(1,5,7,4,9,11).forAll_case(_ % 2 == 1))
+    assert(!Stream(1,5,7,4,9,11).forAll_case(_ > 1))
+    assert(Stream(1,5,7,4,9,11).forAll_case(_ > 0))
   }
 
   test("testTakeWhile") {

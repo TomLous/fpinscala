@@ -47,7 +47,12 @@ trait Stream[+A] {
     case _ => empty
   }
 
-  def forAll(p: A => Boolean): Boolean = ???
+  def forAll_case(p: A => Boolean): Boolean = this match {
+    case Cons(h, t) => p(h()) && t().forAll(p)
+    case _ => true
+  }
+
+  def forAll(p: A => Boolean): Boolean = foldRight(true)((a,b) => p(a) && b)
 
   def headOption: Option[A] = ???
 
