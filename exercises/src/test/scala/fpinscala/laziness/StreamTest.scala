@@ -67,7 +67,9 @@ class StreamTest extends FunSuite {
   }
 
   test("testHeadOption") {
-
+    assert(Stream(1,4,5,6,3,9,10).headOption === Some(1))
+    assert(Stream(4,5,6,3,9,10).headOption === Some(4))
+    assert(Stream().headOption === None)
   }
 
   test("testExists") {
