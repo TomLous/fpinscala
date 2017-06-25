@@ -11,14 +11,22 @@ class StreamTest extends FunSuite {
 
 //  lazy val testInts = Stream(1,4,5,6,3,9,10)
 
+  test("testToList_StackUnsafe") {
+    assert(Stream(1,4,5,6,3,9,10).toList_StackUnsafe === List(1,4,5,6,3,9,10))
+    assert(Stream("a","b","c").toList_StackUnsafe === List("a","b","c"))
+    assert(Stream().toList_StackUnsafe === Nil)
+  }
+
   test("testToList") {
     assert(Stream(1,4,5,6,3,9,10).toList === List(1,4,5,6,3,9,10))
-    assert(Stream("a","b","c").toList === List("a","b","c"))
+    assert(Stream("a","b","c").toList=== List("a","b","c"))
     assert(Stream().toList === Nil)
   }
 
   test("testDrop") {
-
+    assert(Stream(1,4,5,6,3,9,10).drop(3).toList === List(6,3,9,10))
+    assert(Stream("a","b","c").drop(3).toList === Nil)
+    assert(Stream("a","b","c").drop(5).toList === Nil)
   }
 
   test("testForAll") {
@@ -34,7 +42,10 @@ class StreamTest extends FunSuite {
   }
 
   test("testTake") {
-
+    assert(Stream(1,4,5,6,3,9,10).take(3).toList === List(1,4,5))
+    assert(Stream(1,4,5,6,3,9,10).take(0).toList === Nil)
+    assert(Stream("a","b","c").take(3).toList === List("a","b","c"))
+    assert(Stream("a","b","c").take(5).toList === List("a","b","c"))
   }
 
   test("testHeadOption") {
