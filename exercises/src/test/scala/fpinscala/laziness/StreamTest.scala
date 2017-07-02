@@ -49,10 +49,16 @@ class StreamTest extends FunSuite {
     assert(Stream(2,1,6,7,3,9,10).takeWhile(_ > 0).toList === List(2,1,6,7,3,9,10))
   }
 
-  test("testTakeWhileFoldRight") {
-    assert(Stream(2,4,6,7,3,9,10).takeWhileFoldRight(_ % 2 == 0).toList === List(2,4,6))
-    assert(Stream(2,1,6,7,3,9,10).takeWhileFoldRight(_ < 2).toList === List())
-    assert(Stream(2,1,6,7,3,9,10).takeWhileFoldRight(_ > 0).toList === List(2,1,6,7,3,9,10))
+  test("testTakeWhile_unfold") {
+    assert(Stream(2,4,6,7,3,9,10).takeWhile_unfold(_ % 2 == 0).toList === List(2,4,6))
+    assert(Stream(2,1,6,7,3,9,10).takeWhile_unfold(_ < 2).toList === List())
+    assert(Stream(2,1,6,7,3,9,10).takeWhile_unfold(_ > 0).toList === List(2,1,6,7,3,9,10))
+  }
+
+  test("testTakeWhile_foldRight") {
+    assert(Stream(2,4,6,7,3,9,10).takeWhile_foldRight(_ % 2 == 0).toList === List(2,4,6))
+    assert(Stream(2,1,6,7,3,9,10).takeWhile_foldRight(_ < 2).toList === List())
+    assert(Stream(2,1,6,7,3,9,10).takeWhile_foldRight(_ > 0).toList === List(2,1,6,7,3,9,10))
   }
 
   test("testFind") {
@@ -66,6 +72,13 @@ class StreamTest extends FunSuite {
     assert(Stream("a","b","c").take(5).toList === List("a","b","c"))
   }
 
+  test("testTake_unfold") {
+    assert(Stream(1,4,5,6,3,9,10).take_unfold(3).toList === List(1,4,5))
+    assert(Stream(1,4,5,6,3,9,10).take_unfold(0).toList === Nil)
+    assert(Stream("a","b","c").take_unfold(3).toList === List("a","b","c"))
+    assert(Stream("a","b","c").take_unfold(5).toList === List("a","b","c"))
+  }
+
   test("testHeadOption") {
     assert(Stream(1,4,5,6,3,9,10).headOption === Some(1))
     assert(Stream(4,5,6,3,9,10).headOption === Some(4))
@@ -75,6 +88,11 @@ class StreamTest extends FunSuite {
   test("testMap") {
     assert(Stream(1,4,5,6,3,9,10).map(_ * 2).toList === List(2,8,10,12,6,18,20))
     assert(Stream(1,4,5,6,3,9,10).map(x => s"h$x").toList === List("h1","h4","h5","h6","h3","h9","h10"))
+  }
+
+  test("testMap_unfold") {
+    assert(Stream(1,4,5,6,3,9,10).map_unfold(_ * 2).toList === List(2,8,10,12,6,18,20))
+    assert(Stream(1,4,5,6,3,9,10).map_unfold(x => s"h$x").toList === List("h1","h4","h5","h6","h3","h9","h10"))
   }
 
   test("testMap_case") {
@@ -141,6 +159,22 @@ class StreamTest extends FunSuite {
   }
 
 
+
+  test("testZipWith") {
+    assert(Stream(1,4,5).zipWith(Stream(8,3,15))(_ + _).toList === List(9,7,20))
+    assert(Stream(1,4,5,6).zipWith(Stream(8,3,15))(_ + _).toList === List(9,7,20))
+    assert(Stream(1,4).zipWith(Stream(8,3,15))(_ + _).toList === List(9,7))
+    assert(Stream.empty[Int].zipWith(Stream(8,3,15))(_ + _).toList === List())
+    assert(Stream(1,4,5).zipWith(Stream.empty[Int])(_ + _).toList === List())
+  }
+
+  test("testZipAll") {
+    assert(Stream(1,4,5).zipAll(Stream(8,3,15)).toList === List((Some(1),Some(8)), (Some(4),Some(3)), (Some(5),Some(15))))
+    assert(Stream(1,4,5,6).zipAll(Stream(8,3,15)).toList === List((Some(1),Some(8)), (Some(4),Some(3)), (Some(5),Some(15)), (Some(6), None)))
+    assert(Stream(1,4).zipAll(Stream(8,3,15)).toList === List((Some(1),Some(8)), (Some(4),Some(3)), (None,Some(15))))
+    assert(Stream.empty[Int].zipAll(Stream(8,3,15)).toList === List((None,Some(8)), (None,Some(3)), (None,Some(15))))
+    assert(Stream(1,4,5).zipAll(Stream.empty[Int]).toList === List((Some(1),None), (Some(4),None), (Some(5),None)))
+  }
 
   test("testExists") {
 
