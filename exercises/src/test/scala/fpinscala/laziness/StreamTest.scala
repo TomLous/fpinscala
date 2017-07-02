@@ -176,8 +176,14 @@ class StreamTest extends FunSuite {
     assert(Stream(1,4,5).zipAll(Stream.empty[Int]).toList === List((Some(1),None), (Some(4),None), (Some(5),None)))
   }
 
-  test("testExists") {
-
+  test("testHasSubsequence") {
+    assert(Stream(1,4,5,7,9,11).hasSubsequence(Stream(1,4,5)))
+    assert(Stream(1,4,5,7,9,11).hasSubsequence(Stream(4,5,7)))
+    assert(Stream(1,4,5,7,9,11).hasSubsequence(Stream(9,11)))
+    assert(Stream(1,4,5,7,9,11).hasSubsequence(Stream()))
+    assert(!Stream(1,4,5,7,9,11).hasSubsequence(Stream(7,11)))
+    assert(!Stream(1,4,5,7,9,11).hasSubsequence(Stream(7,9,10)))
+    assert(!Stream(1,4,5,7,9,11).hasSubsequence(Stream(11,12)))
   }
 
   test("testFoldRight") {
