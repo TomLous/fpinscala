@@ -186,8 +186,9 @@ class StreamTest extends FunSuite {
     assert(!Stream(1,4,5,7,9,11).hasSubsequence(Stream(11,12)))
   }
 
-  test("testFoldRight") {
-
+  test("testScanRight") {
+    assert(Stream(1,4,5).scanRight(0)(_ + _).toList === List(10,9,5,0))
+    assert(Stream(1,2,4).scanRight(0)(_ + _).toList === List(7,6,4,0))
   }
 
   test("testStartsWith") {

@@ -117,6 +117,13 @@ trait Stream[+A] {
   def hasSubsequence[A](s: Stream[A]): Boolean =
     tails exists (_ startsWith s)
 
+  def scanRight[B](z: B)(f: (A, => B) => B): Stream[B] = foldRight((Stream(z), z))((a, tuple) => {
+    lazy val tuple0:(Stream[B], B) = tuple
+    lazy val newB:B = f(a, tuple0._2)
+    (cons(newB, tuple0._1), newB)
+  })._1
+
+
 }
 case object Empty extends Stream[Nothing]
 case class Cons[+A](h: () => A, t: () => Stream[A]) extends Stream[A]
