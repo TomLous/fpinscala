@@ -49,6 +49,15 @@ class RNGTest extends FunSuite {
   }
 
   test("testMap2") {
+    val rng = RNG.Simple(11081979)
+
+    val res= RNG.map2(RNG.int, RNG.int)(_ + _)(rng)
+
+    val (a, rng2) = rng.nextInt
+    val (b, rng3) = rng2.nextInt
+
+    assert(a+b === res._1)
+    assert(rng3 === res._2)
 
   }
 
