@@ -62,7 +62,19 @@ object RNG {
       ((d1, d2, d3), r3)
   }
 
-  def ints(count: Int)(rng: RNG): (List[Int], RNG) = ???
+  def ints(count: Int)(rng: RNG): (List[Int], RNG) = {
+    @tailrec
+    def loop(cnt: Int, lrng: RNG, items: List[Int]=Nil): (List[Int], RNG) = {
+      if(cnt == 0) (items, lrng)
+      else {
+        lrng.nextInt match {
+          case (i, rng) => loop(cnt-1, rng, i::items)
+        }
+      }
+    }
+
+    loop(count, rng)
+  }
 
   def map2[A,B,C](ra: Rand[A], rb: Rand[B])(f: (A, B) => C): Rand[C] = ???
 
