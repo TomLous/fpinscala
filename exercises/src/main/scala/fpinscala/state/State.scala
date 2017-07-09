@@ -104,8 +104,16 @@ object RNG {
       )
   }
 
-  def flatMap[A, B](f: Rand[A])(g: A => Rand[B]): Rand[B] = ???
-}
+  def flatMap[A, B](f: Rand[A])(g: A => Rand[B]): Rand[B] = rng => {
+    val (a, rng2) = f(rng)
+    g(a)(rng2)
+  }
+
+//  def map[A, B](s: Rand[A])(f: A => B): Rand[B] =
+//    rng => {
+//      val (a, rng2) = s(rng)
+//      (f(a), rng2)
+//    }
 
 case class State[S, +A](run: S => (A, S)) {
   def map[B](f: A => B): State[S, B] =
