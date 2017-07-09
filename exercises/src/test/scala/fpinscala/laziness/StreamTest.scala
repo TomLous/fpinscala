@@ -210,5 +210,4 @@ class StreamTest extends FunSuite {
     assert(Stream().tails.map(_.toList).toList == List(List()))
   }
 
- // @todo bookmark p.76  / 5.13
 }

@@ -16,8 +16,9 @@ class RNGTest extends FunSuite {
 
   }
 
-  test("testInts") {
-
+  test("testDouble") {
+    val rng = RNG.Simple(11081979)
+    assert(RNG.nonNegativeInt(rng)._1.toDouble / (Int.MaxValue + 1) == RNG.double(rng)._1)
   }
 
   test("testMap") {
@@ -52,4 +53,5 @@ class RNGTest extends FunSuite {
 
   }
 
+  // @todo bookmark p.83  / 6.3
 }
