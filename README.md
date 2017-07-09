@@ -1,5 +1,13 @@
 [![Build status](https://travis-ci.org/fpinscala/fpinscala.svg?branch=master)](https://travis-ci.org/fpinscala/fpinscala) [![Join the chat at https://gitter.im/fpinscala/fpinscala](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fpinscala/fpinscala?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
 
+# Caveat
+This is a fork of <https://github.com/fpinscala/fpinscala>
+This will contain worked out answers in the exercises section.
+Since the answers are already bundled, cloning/forking this has no real use.
+
+continued...
+
+
 This repository contains exercises, hints, and answers for the book
 [Functional Programming in Scala](http://manning.com/bjarnason/). Along
 with the book itself, it's the closest you'll get to having your own
