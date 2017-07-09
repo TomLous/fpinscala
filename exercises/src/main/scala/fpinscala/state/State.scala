@@ -32,6 +32,8 @@ object RNG {
       (f(a), rng2)
     }
 
+  def get[A](s: Rand[A])(rng: RNG): A = s(rng)._1
+
   def nonNegativeInt(rng: RNG): (Int, RNG) = rng.nextInt match {
     case (n, rng2) if n >= 0 => (n, rng2)
     case (n, rng2) if n < 0 => (-n + 1, rng2)
@@ -39,6 +41,10 @@ object RNG {
 
   def double(rng: RNG): (Double, RNG) = nonNegativeInt(rng) match {
     case(n, rng2) => (n.toDouble / (Int.MaxValue + 1), rng2)
+  }
+
+  def doubleMap: Rand[Double] = {
+    map(nonNegativeInt)(_.toDouble / (Int.MaxValue + 1))
   }
 
   def intDouble(rng: RNG): ((Int,Double), RNG) = {

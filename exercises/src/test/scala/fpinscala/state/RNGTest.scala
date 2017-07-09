@@ -1,5 +1,6 @@
 package fpinscala.state
 
+import fpinscala.state.RNG.Rand
 import org.scalatest.FunSuite
 
 /**
@@ -18,7 +19,15 @@ class RNGTest extends FunSuite {
 
   test("testDouble") {
     val rng = RNG.Simple(11081979)
-    assert(RNG.nonNegativeInt(rng)._1.toDouble / (Int.MaxValue + 1) == RNG.double(rng)._1)
+    assert(RNG.nonNegativeInt(rng)._1.toDouble / (Int.MaxValue + 1) === RNG.double(rng)._1)
+  }
+
+  test("testDoubleMap") {
+    val rng = RNG.Simple(11081979)
+
+    val x:Rand[Double] = RNG.doubleMap
+    assert(RNG.nonNegativeInt(rng)._1.toDouble / (Int.MaxValue + 1) === RNG.get(x)(rng))
+
   }
 
   test("testInts") {
