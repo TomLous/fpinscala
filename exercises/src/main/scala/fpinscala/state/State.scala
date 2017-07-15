@@ -123,13 +123,16 @@ object RNG {
 //  }
 case class State[S, +A](run: S => (A, S)) {
   def map[B](f: A => B): State[S, B] =
-    ???
+    flatMap(a => State.unit(f(a)))
 
   def map2[B, C](sb: State[S, B])(f: (A, B) => C): State[S, C] =
-    ???
+    flatMap(a => sb.map(b => f(a,b)))
 
-  def flatMap[B](f: A => State[S, B]): State[S, B] =
-    ???
+  def flatMap[B](f: A => State[S, B]): State[S, B] =  State(state => {
+    val (a, state2) = run(state)
+    f(a).run(state2)
+   })
+
 }
 
 sealed trait Input
@@ -144,4 +147,7 @@ object State {
   type Rand[A] = State[RNG, A]
 
   def simulateMachine(inputs: List[Input]): State[Machine, (Int, Int)] = ???
+
+  def unit[S, A](a: A): State[S, A] =
+    State(s => (a, s))
 }
