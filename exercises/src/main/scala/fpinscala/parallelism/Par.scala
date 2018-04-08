@@ -100,6 +100,12 @@ object Par {
   def choiseNViaChooser[A](n: Par[Int])(choices: List[Par[A]]): Par[A] =
     chooser(n)(choices)
 
+  def join[A](a: Par[Par[A]]): Par[A] = es => {
+    run(es)(run(es)(a).get())
+  }
+
+  def flatMapViaJoin[A,B](a: Par[A])(f: A => Par[B]): Par[B] =
+    join(map(a)(f))
 
 
 
