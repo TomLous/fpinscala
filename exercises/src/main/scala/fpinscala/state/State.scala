@@ -163,19 +163,10 @@ object State {
         }
       )
 
-  def get[S]: State[S, S] = State(s => (s,s))
-  def set[S](s: S): State[S, Unit] = State(_ => ((), s))
+//  def get[S]: State[S, S] = State(s => (s,s))
+//  def set[S](s: S): State[S, Unit] = State(_ => ((), s))
 
-  def simulateMachine(inputs: List[Input]): State[Machine, (Int, Int)] =
-  inputs match {
-    case input :: tail =>
-      input match {
-        case Coin => ???
-      }
-      simulateMachine(tail)
-    case Nil => get[Machine].map(m => (m.candies, m.coins))
-
-  }
+  def simulateMachine(inputs: List[Input]): State[Machine, (Int, Int)] = ???
 
 
 }
